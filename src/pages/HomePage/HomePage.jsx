@@ -1,8 +1,6 @@
 import React from 'react'
 import {useQuery} from 'react-query'
-//components
-import Header from '../../components/Header/Header';
-import Search from '../../components/Search/Search';
+import Card from '../../components/Card/Card';
 //styles
 import './HomePage.scss'
 
@@ -11,34 +9,46 @@ const getCountries = async () =>
 
 export default function HomePage() {
 
+    const [searchTerm,setSearchTerm] = React.useState("")
+
     const { data, isLoading, error} = useQuery('countries',getCountries);
  
     if (isLoading) return 'Loading...'
  
     if (error) return 'An error has occurred: ' + error.message
     
-    console.log(data)
+   // console.log(data)
     
     return (
         <>
-            <Header />
-    
-            <Search />
-         
             
-            
+            <div id="search">
+                <div id="searchbar">
+                    <i className="fas fa-search"></i>
+                    <input type="text" placeholder='Search for a country...' onChange={(event) =>{setSearchTerm(event.target.value)}}/>
+                </div>
+
+                <select>
+                    <option>Africa</option>
+                    <option>America</option>
+                </select>
+            </div>
+
             <section>
-                {data?.map((item,index) =>(
-                    <div className="country" key={index}>
-                        <img src={item.flag} alt={item.name} />
-                        <div className="content">
-                            <h2>{item.name}</h2>
-                            <p><span>Population: </span>{item.population}</p>
-                            <p><span>Region: </span>{item.region}</p>
-                            <p><span>Capital: </span>{item.capital}</p>
-                        </div>
-                    </div>
-                ))}
+                {data.filter((item) => {
+                    if(searchTerm ==="") {
+                        return item;
+                    } else if (item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                        return item
+                    }
+                    return false
+                }).map((item,index) =>{
+                    return (
+                        <Card item={item} key={index} /> 
+                    );
+                })}
+                 
+                
             </section>
             
         </>

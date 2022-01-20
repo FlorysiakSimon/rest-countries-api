@@ -3,13 +3,14 @@
 :root {
   --background: hsl(0, 0%, 98%);
   --element: hsl(0, 0%, 100%);
-  --input: hsl(0, 0%, 52%);
+  --input: hsl(0, 0%, 100%);
   --text: hsl(200, 15%, 8%);
 }
 
 [data-theme="dark"] {
   --background: hsl(207, 26%, 17%);
   --element: hsl(209, 23%, 22%);
+  --input: hsl(209, 23%, 22%);
   --text: hsl(0, 0%, 100%);
 }
 
@@ -20,6 +21,41 @@ body {
   color: var(--text);
   margin: 0;
   transition: background 500ms ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#search {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1440px;
+  #searchbar {
+    display: flex;
+    align-items: center;
+    margin: 2em;
+    position: relative;
+    input {
+      width: 400px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      height: 20px;
+      outline-width: 0;
+      padding: 1em;
+      background-color: var(--input);
+      border: 0;
+      border-radius: 5px;
+      padding-left: 4em;
+    }
+    i {
+      position: absolute;
+      left: 15px;
+      font-size: 16px;
+      color: gray;
+    }
+  }
 }
 
 section {

@@ -1,4 +1,3 @@
-import { click } from '@testing-library/user-event/dist/click';
 import React from 'react';
 import './Header.scss'
 
@@ -20,7 +19,7 @@ export default function Header() {
         }    
     }
 
-  return( 
+    return( 
         <nav>
             <h1>Where in the world?</h1>
             <p id="theme-switcher" onClick={toggleTheme}>Dark Mode</p>
