@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -6px rgb(56, 56, 56);
+  background-color: var(--background);
+  width: 100%;
+  h1 {
+    padding-left: 1em;
+  }
+  p {
+    padding-right: 1em;
+    color: var(--text);
+    font-weight: 600;
+  }
+}
