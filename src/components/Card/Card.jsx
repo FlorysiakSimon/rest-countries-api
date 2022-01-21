@@ -5,7 +5,7 @@ import './Card.scss'
 
 export default function Card({item}) {
   return <>
-            <NavLink to={`${item.name}`} className="country">
+            <NavLink to={`${item.alpha3Code}`} className="country">
                         <img src={item.flag} alt={item.name} />
                         <div className="content">
                             <h2>{item.name}</h2>

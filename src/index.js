@@ -2,7 +2,7 @@ import { render } from "react-dom";
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 import './index.css'
 import HomePage from './pages/HomePage/HomePage';
@@ -19,7 +19,7 @@ render(
     <Header />
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}/>
+        <Route exact path="/" element={<HomePage />}/>
         <Route path=":name" element={<CountryPage />}/>
       </Routes>
     </BrowserRouter>

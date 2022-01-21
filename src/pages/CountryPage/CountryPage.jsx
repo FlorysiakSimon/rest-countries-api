@@ -1,23 +1,34 @@
 import React from 'react';
-import {useQuery} from 'react-query'
+import { useQuery} from 'react-query'
+import { useParams, NavLink } from 'react-router-dom';
+import CountryInfos from '../../components/CountryInfos/CountryInfos';
 //styles
 import './CountryPage.scss';
 
 
 
-const getCountry = async () =>
-  await (await fetch(`https://restcountries.com/v2/name/Belgique`)).json();
+
 
 export default function CountryPage() {
 
-    const { data, isLoading, error} = useQuery('country',getCountry);
- 
-    if (isLoading) return 'Loading...'
- 
-    if (error) return 'An error has occurred: ' + error.message
-    console.log(data)
+   
+    const { name } = useParams();
+    const getCountry = async () =>
+      await (await fetch(`https://restcountries.com/v2/alpha/${name}`)).json();
 
-    return <div>
-        sup
-    </div>;
+    const { data, isLoading, error} = useQuery('country',getCountry);
+
+    console.log(data)
+    
+    if (isLoading) return 'Loading...'
+    if (error) return 'An error has occurred: ' + error.message
+    
+    return (
+      <>
+        <div id="nav">
+          <NavLink to="/" id="backLink"><i className="fas fa-arrow-left"></i><span>Back</span></NavLink>
+        </div>
+        <CountryInfos data={data} />
+      </>
+    );
 }

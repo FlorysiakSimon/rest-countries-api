@@ -20,7 +20,7 @@ body {
   font-family: "Nunito Sans", sans-serif;
   color: var(--text);
   margin: 0;
-  transition: background 500ms ease-in-out;
+  transition: background 400ms ease-in;
 }
 
 a {
@@ -33,6 +33,8 @@ a {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1440px;
+  align-items: center;
+  padding: 0 2em;
   #searchbar {
     display: flex;
     align-items: center;
@@ -58,13 +60,14 @@ a {
   }
 }
 
-section {
+#countries {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   max-width: 1440px;
   margin: 0 auto;
+
   .country {
     display: flex;
     margin: 1em;
@@ -73,6 +76,7 @@ section {
     height: 400px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
+    background-color: var(--element);
     img {
       width: 100%;
       height: 180px;
@@ -86,6 +90,25 @@ section {
           font-weight: 800;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 672px) {
+  #search {
+    flex-direction: column;
+  }
+
+  #countries {
+    .country {
+      display: flex;
+      margin: 1em;
+      flex-direction: column;
+      width: 500px;
+      height: 400px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 5px;
+      background-color: var(--element);
     }
   }
 }

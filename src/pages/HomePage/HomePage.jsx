@@ -1,6 +1,7 @@
 import React from 'react'
 import {useQuery} from 'react-query'
 import Card from '../../components/Card/Card';
+import Dropdown from '../../components/Dropdown/Dropdown';
 //styles
 import './HomePage.scss'
 
@@ -8,7 +9,8 @@ const getCountries = async () =>
   await (await fetch('https://restcountries.com/v2/all')).json();
 
 export default function HomePage() {
-
+    
+      
     const [searchTerm,setSearchTerm] = React.useState("")
 
     const { data, isLoading, error} = useQuery('countries',getCountries);
@@ -17,7 +19,13 @@ export default function HomePage() {
  
     if (error) return 'An error has occurred: ' + error.message
     
-   // console.log(data)
+    function filterData(item) {
+        console.log(item.value);
+        // https://restcountries.com/v3.1/region/{item}
+
+    }
+
+//    console.log(data)
     
     return (
         <>
@@ -28,13 +36,10 @@ export default function HomePage() {
                     <input type="text" placeholder='Search for a country...' onChange={(event) =>{setSearchTerm(event.target.value)}}/>
                 </div>
 
-                <select>
-                    <option>Africa</option>
-                    <option>America</option>
-                </select>
+                <Dropdown title="Filter by Region" filterData={filterData} />
             </div>
 
-            <section>
+            <section id="countries">
                 {data.filter((item) => {
                     if(searchTerm ==="") {
                         return item;
