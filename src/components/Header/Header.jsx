@@ -21,8 +21,9 @@ export default function Header() {
 
     return( 
         <nav>
-            <h1>Where in the world?</h1>
-            <p id="theme-switcher" onClick={toggleTheme}>Dark Mode</p>
-      
+            <div class="flexnav">
+                <h1>Where in the world?</h1>
+                <p id="theme-switcher" onClick={toggleTheme}>{currentTheme ? <i className="fas fa-moon"></i> : <i className="far fa-moon"></i>}Dark Mode</p>
+            </div>
         </nav>);
 }

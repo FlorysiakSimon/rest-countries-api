@@ -1,18 +1,27 @@
 nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px -6px rgb(56, 56, 56);
   background-color: var(--element);
   margin-bottom: 2em;
-  h1 {
-    padding-left: 1em;
-  }
-  p {
-    padding-right: 2em;
-    color: var(--text);
-    font-weight: 600;
-    cursor: pointer;
+  .flexnav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+    h1 {
+      padding-left: 1em;
+    }
+    p {
+      display: flex;
+      align-items: center;
+      padding-right: 2em;
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      i {
+        padding-right: 10px;
+      }
+    }
   }
 }
