@@ -19,7 +19,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [netlify](sf-react-rest-countries-api.netlify.app/)
+- Live Site URL: [netlify](https://sf-react-rest-countries-api.netlify.app/)
 
 ## Prerequisites
 
