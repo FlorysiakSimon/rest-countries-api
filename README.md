@@ -36,7 +36,7 @@ Users should be able to:
 
 1. Clone this repository
    ```sh
-   git clone https://github.com/FlorysiakSimon/starter-react-sass-router
+   git clone https://github.com/FlorysiakSimon/rest-countries-api
    ```
 2. Install NPM packages
    ```sh
