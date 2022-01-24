@@ -17,6 +17,10 @@ Users should be able to:
 
 ![Lien](https://raw.githubusercontent.com/FlorysiakSimon/rest-countries-api/main/design/desktop-preview.jpg)
 
+### Links
+
+- Live Site URL: [netlify](sf-react-rest-countries-api.netlify.app/)
+
 ## Prerequisites
 
 - [NodeJS (version 14.17)](https://nodejs.org/en/)
