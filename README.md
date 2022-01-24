@@ -15,7 +15,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Lien](https://raw.githubusercontent.com/FlorysiakSimon/rest-countries-api/main/design/desktop-design-home-light.jpg)
+![Lien](https://raw.githubusercontent.com/FlorysiakSimon/rest-countries-api/main/design/desktop-preview.jpg)
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Users should be able to:
 - [react](https://reactjs.org/)
 - [react-router-dom](https://reactrouter.com/web/guides/quick-start)
 - [sass](https://sass-lang.com/)
-- [react-query](https://react-query.tanstack.com/)
+- [axios](https://github.com/axios/axios)
 
 ## Installation
 

@@ -27,7 +27,7 @@ export default function CountryInfos({data}) {
                 </div>
                 <p id="borderscountries"><span>Border Countries: </span>
                     {data.borders.map((item,index)=>{
-                        return <NavLink className="borders" to="/" key={index}>{item}</NavLink>
+                        return <NavLink className="borders" to={`/${item}`} key={index}>{item}</NavLink>
                         }
                     )}
                 </p>

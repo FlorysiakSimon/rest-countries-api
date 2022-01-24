@@ -1,7 +1,7 @@
-import React from 'react';
-import { useQuery} from 'react-query'
+import React, {useState,useEffect} from 'react'
 import { useParams, NavLink } from 'react-router-dom';
 import CountryInfos from '../../components/CountryInfos/CountryInfos';
+import { getCountry } from '../../services/data';
 //styles
 import './CountryPage.scss';
 
@@ -11,18 +11,20 @@ import './CountryPage.scss';
 
 export default function CountryPage() {
 
-   
-    const { name } = useParams();
-    const getCountry = async () =>
-      await (await fetch(`https://restcountries.com/v2/alpha/${name}`)).json();
-
-    const { data, isLoading, error} = useQuery('country',getCountry);
-
-    console.log(data)
+    const [data, setData] = useState([]);
+    const {name} = useParams();
     
-    if (isLoading) return 'Loading...'
-    if (error) return 'An error has occurred: ' + error.message
+    useEffect(() => {
+      const getData = async () => {
+        const request = await getCountry(name);
+        if (!request) return alert('data error');
+        setData(request);
+      };
+      getData();
+    }, [name]);
+    if (data.length === 0) return null;
     
+     
     return (
       <>
         <div id="nav">

@@ -31,22 +31,6 @@ function Dropdown({ title, multiSelect = false,filterData }) {
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 
-//   function handleOnClick(item) {
-//     if (!selection.some(current => current.id === item.id)) {
-//       if (!multiSelect) {
-//         setSelection([item]);
-//       } else if (multiSelect) {
-//         setSelection([...selection, item]);
-//       }
-//     } else {
-//       let selectionAfterRemoval = selection;
-//       selectionAfterRemoval = selectionAfterRemoval.filter(
-//         current => current.id !== item.id
-//       );
-//       setSelection([...selectionAfterRemoval]);
-//     }
-//   }
-
   function isItemInSelection(item) {
     if (selection.some(current => current.id === item.id)) {
       return true;

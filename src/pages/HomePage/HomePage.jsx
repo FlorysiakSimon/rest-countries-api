@@ -1,32 +1,54 @@
-import React from 'react'
-import {useQuery} from 'react-query'
+import React, {useState,useEffect} from 'react'
+import { getAllCountries,getRegion } from '../../services/data';
 import Card from '../../components/Card/Card';
 import Dropdown from '../../components/Dropdown/Dropdown';
 //styles
 import './HomePage.scss'
+import FilteredCard from '../../components/FilteredCard/FilteredCard';
 
-const getCountries = async () =>
-  await (await fetch('https://restcountries.com/v2/all')).json();
 
 export default function HomePage() {
-    
+    const [searchTerm,setSearchTerm] = useState("")
+    const [data, setData] = useState([]);
+    const [filtredData, setFiltredData] = useState([]);
+    const [region,setRegion] = useState("")
+ 
+    useEffect(() => {
+        if(!region){return null}
+        const getData = async () => {
+          const request = await getRegion(region);
+          if (!request) return null;
+          setFiltredData(request);
+        };
+        getData();
+    }, [region]);
+
+    useEffect(() => {
+		const getData = async () => {
+			const request = await getAllCountries();
+			if (!request) return alert('data error');
+			setData(request);
+		};
+		getData();
+	}, []);
+	if (data.length === 0) return null;
       
-    const [searchTerm,setSearchTerm] = React.useState("")
 
-    const { data, isLoading, error} = useQuery('countries',getCountries);
- 
-    if (isLoading) return 'Loading...'
- 
-    if (error) return 'An error has occurred: ' + error.message
+
     
-    function filterData(item) {
-        console.log(item.value);
-        // https://restcountries.com/v3.1/region/{item}
-
+    function FilterData(item) {       
+        setRegion(item.value) 
+        const getData = async () => {
+			const request = await getRegion(region);
+			if (!request) return null;
+			setFiltredData(request);
+		};
+		getData();
+        
     }
 
-//    console.log(data)
-    
+
+
     return (
         <>
             
@@ -36,11 +58,28 @@ export default function HomePage() {
                     <input type="text" placeholder='Search for a country...' onChange={(event) =>{setSearchTerm(event.target.value)}}/>
                 </div>
 
-                <Dropdown title="Filter by Region" filterData={filterData} />
+                <Dropdown title="Filter by Region" filterData={FilterData} />
             </div>
 
             <section id="countries">
-                {data.filter((item) => {
+
+            {filtredData.length 
+            ?(  //filtered by region
+                filtredData.filter((item) => {
+                    if(searchTerm ==="") {
+                        return item;
+                    } else if (item.name.common.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                        return item
+                    }
+                    return false
+                }).map((item,index) =>{
+                    return (
+                        <FilteredCard item={item} key={index} /> 
+                    );
+                })
+
+            ):  //all countries
+                data.filter((item) => {
                     if(searchTerm ==="") {
                         return item;
                     } else if (item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
@@ -51,7 +90,12 @@ export default function HomePage() {
                     return (
                         <Card item={item} key={index} /> 
                     );
-                })}
+                })
+            }
+                
+                
+                         
+ 
                  
                 
             </section>
