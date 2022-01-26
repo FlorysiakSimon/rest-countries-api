@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './CountryInfos.scss'
 
 export default function CountryInfos({data}) {
+    
   return (
     <>
         <section id="country">
@@ -26,10 +27,12 @@ export default function CountryInfos({data}) {
                 </div>
                 </div>
                 <p id="borderscountries"><span>Border Countries: </span>
-                    {data.borders.map((item,index)=>{
+                    {data.borders ? (
+                         
+                    data.borders.map((item,index)=>{
                         return <NavLink className="borders" to={`/${item}`} key={index}>{item}</NavLink>
-                        }
-                    )}
+                        } ) 
+                    ) :  " No border for this country" }
                 </p>
             </div>
         </section>

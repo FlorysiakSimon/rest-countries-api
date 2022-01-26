@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import { useParams, NavLink } from 'react-router-dom';
 import CountryInfos from '../../components/CountryInfos/CountryInfos';
-import { getCountry } from '../../services/data';
+import { getCountry,getAllCountries } from '../../services/data';
 //styles
 import './CountryPage.scss';
 
@@ -13,7 +13,20 @@ export default function CountryPage() {
 
     const [data, setData] = useState([]);
     const {name} = useParams();
-    
+    const [border,getBorder] =useState([]);
+
+
+    useEffect(() => {
+      const getData = async () => {
+        const request = await getAllCountries();
+        if (!request) return alert('data error');
+        setData(request);
+      };
+      getBorder();
+    }, []);
+
+
+      
     useEffect(() => {
       const getData = async () => {
         const request = await getCountry(name);
@@ -24,7 +37,7 @@ export default function CountryPage() {
     }, [name]);
     if (data.length === 0) return null;
     
-     
+     console.log(data);
     return (
       <>
         <div id="nav">
